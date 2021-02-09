@@ -1,6 +1,8 @@
 const express = require('express');
 const filmRoute = require("./src/route/film");
 const userRoute = require("./src/route/user");
+const historyRoute = require("./src/route/history")
+const totalHistoryRoute = require("./src/route/totalHistory")
 
 const app     = express();
 
@@ -23,6 +25,8 @@ app.use((req,res, next) => {
 
 app.use('/films', filmRoute);
 app.use('/users', userRoute);
+app.use('/histories', historyRoute);
+app.use('/totalhistories', totalHistoryRoute)
 
 app.use((req,res) => {
     res.status(404).send("<h1>Page Not Founf</h1>")

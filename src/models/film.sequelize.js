@@ -9,6 +9,12 @@ module.exports = (sequelize, Sequelize) => {
         imageUrl:{
             type:Sequelize.STRING
         },
+        price:{
+          type:Sequelize.INTEGER
+        },
+        category:{
+            type:Sequelize.STRING
+        },
         published:{
             type:Sequelize.STRING
         }

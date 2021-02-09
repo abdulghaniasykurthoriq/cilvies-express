@@ -7,12 +7,12 @@ module.exports = {
     retrieveAllFilm: async (req,res) => {
         try{
         const title = req.query.title
-        const description = req.query.description
+        const category = req.query.category
         const condition1 = title ? {title : { [Op.like]: `%${title}%`}} : null;
-        const condition2 = description ? {description : {[Op.like]: `%${description}%`}} :null;
+        const condition2 = category ? {category : {[Op.like]: `%${category}%`}} :null;
         let where;
         if(condition1 && condition2){
-            where = { title: {[Op.like]: `%${title}%`}, description:{[Op.like]: `%${description}%`}} 
+            where = { title: {[Op.like]: `%${title}%`}, category:{[Op.like]: `%${category}%`}}
         }else if(condition1){
             where = condition1
         }else if(condition2){
@@ -23,7 +23,11 @@ module.exports = {
 
 
 
-        const allFilms = await FilmModel.findAll({where:where});
+        const allFilms = await FilmModel.findAll({
+            where:where,
+            order:[['updatedAt','DESC']]
+
+        });
         res.json(allFilms)
         }catch(error){
             console.log(error)
@@ -47,7 +51,9 @@ module.exports = {
             title:req.body.title,
             description:req.body.description,
             imageUrl:req.body.imageUrl,
-            published:req.body.published
+            price:req.body.price,
+            published:req.body.published,
+            category:req.body.category      
         }
         await FilmModel.create(newFilm)
         res.sendStatus(201)

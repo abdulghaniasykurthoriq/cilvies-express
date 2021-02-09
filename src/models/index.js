@@ -17,4 +17,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.film = require('./film.sequelize.js')(sequelize, Sequelize);
 db.user = require('./user.sequelize.js')(sequelize, Sequelize);
+db.history = require('./history.sequelize')(sequelize,Sequelize);
+db.totalHistory = require('./totalHistory.sequelize')(sequelize,Sequelize);
 module.exports = db

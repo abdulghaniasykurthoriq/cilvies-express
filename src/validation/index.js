@@ -19,12 +19,11 @@ exports.validationCreateUser = [
 
 exports.validationPostFilm = [
     check('title', "Title can't be empty").notEmpty().isLength({max:30}).withMessage("kepanjangan judulnya"),
-    check('description', "Description can't be empty").notEmpty(),
+    check('description', "Description can't be empty").notEmpty().isLength({max:100}).withMessage("kepanjangan"),
     check('imageUrl','Image URLnya mana cok').notEmpty().matches(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/).withMessage('alamatnya ngaco')
 ]
 exports.validationEditFilm = [
     check('title', "Title can't be empty").notEmpty(),
-    check('description', "Description can't be empty").notEmpty(),
-    check('imageUrl','Image URLnya mana cok').notEmpty().matches(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/).withMessage('alamatnya ngaco')   
+    check('description', "Description can't be empty").notEmpty().isLength({max:100}).withMessage("kepanjangan"),
+    check('imageUrl','Image URLnya mana cok').notEmpty().matches(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/).withMessage('alamatnya ngaco')
 ]
-
